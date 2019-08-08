@@ -5,17 +5,21 @@ using UnityEngine;
 public class PlayRotation : MonoBehaviour
 {
     public Animator animatorController;
+    public AudioSource sound;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             animatorController.SetTrigger("RotateParam");
+            sound.Play();
+        }
     }
 }
