@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/Week4Scene.unity
+  isLoaded: 1
+  isActive: 1
