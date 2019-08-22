@@ -10,9 +10,13 @@ public class LoadAssets : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Instantiate(redObj, new Vector3(2, 0, 0), Quaternion.identity);
-        Instantiate(blueObj, new Vector3(-2, 0, 0), Quaternion.identity);
 
+    }
+
+    void Awake()
+    {
+        Instantiate(redObj, new Vector3(2, 1, 0), Quaternion.identity);
+        Instantiate(blueObj, new Vector3(-2, -1, 0), Quaternion.identity);
     }
 	
 	// Update is called once per frame
