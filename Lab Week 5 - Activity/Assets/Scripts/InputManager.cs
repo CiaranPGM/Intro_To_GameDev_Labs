@@ -6,12 +6,17 @@ public class InputManager : MonoBehaviour
 {
     public Transform[] transArray;
     public Renderer rend;
+    public GameObject redObj, blueObj;
+
     // Start is called before the first frame update
     void Start()
     {
+        redObj = GameObject.FindWithTag("Red");
+        blueObj = GameObject.FindWithTag("Blue");
+
         transArray = new Transform[2];
-        transArray[0] = GameObject.FindWithTag("Red").transform;
-        transArray[1] = GameObject.FindWithTag("Blue").transform;
+        transArray[0] = redObj.transform;
+        transArray[1] = blueObj.transform;
     }
 
     // Update is called once per frame
@@ -32,11 +37,41 @@ public class InputManager : MonoBehaviour
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            //GameObject go = GameObject.FindWithTag("Red");
-            //PrintAndHide script = go.GetComponent<PrintAndHide>();
-            rend = GameObject.FindWithTag("Red").GetComponent<PrintAndHide>().rend;
-            //rend.GetComponent<Color>().Equals(new Color(Random.Range(51, 255), 0, 0));
-            //Debug.Log(rend.GetComponent<Color>.ToString());
+            //Red Prefab
+            if (redObj.GetComponent<PrintAndHide>() != null)
+            {
+                rend = redObj.GetComponent<PrintAndHide>().rend;
+                rend.material.color = new Color(Random.Range(0.2f, 1.0f), 0, 0);
+                Debug.Log("Red: <" + rend.material.color.ToString() + ">");
+            }
+
+            //Blue Prefab
+            if (blueObj.GetComponent<PrintAndHide>() != null)
+            {
+                rend = blueObj.GetComponent<PrintAndHide>().rend;
+                rend.material.color = new Color(0, 0, Random.Range(0.2f, 1.0f));
+                Debug.Log("Blue: <" + rend.material.color.ToString() + ">");
+            }
+
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            if(redObj.GetComponent<PrintAndHide>() != null || blueObj.GetComponent<PrintAndHide>() != null)
+            {
+                GameObject.Destroy(redObj.GetComponent<PrintAndHide>());
+                GameObject.Destroy(blueObj.GetComponent<PrintAndHide>());
+            }
+            if(redObj.GetComponent<PrintAndHide>() == null || blueObj.GetComponent<PrintAndHide>() == null)
+            {
+                if (redObj.active)
+                {
+                    redObj.AddComponent<PrintAndHide>();
+                }
+                if (blueObj.GetComponentInChildren<Renderer>().enabled)
+                {
+                    blueObj.AddComponent<PrintAndHide>();
+                }
+            }
         }
     }
 }

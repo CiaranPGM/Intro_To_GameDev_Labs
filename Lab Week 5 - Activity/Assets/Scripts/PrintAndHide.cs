@@ -10,16 +10,20 @@ public class PrintAndHide : MonoBehaviour {
 	void Start () {
         i = 0;
         randValue = Random.Range(200, 251);
+        if (rend == null)
+            rend = GameObject.FindObjectOfType<Renderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         i++;
-        Debug.Log(gameObject.name + " : " + i);
-
-        if (gameObject.CompareTag("Red") && i == 100)
-            gameObject.SetActive(false);
-        if (gameObject.CompareTag("Blue") && i == randValue)
-            rend.enabled = false;
+        //Debug.Log(gameObject.name + " : " + i);
+        if (rend.enabled)
+        {
+            if (gameObject.CompareTag("Red") && i == 100)
+                gameObject.SetActive(false);
+            if (gameObject.CompareTag("Blue") && i == randValue)
+                rend.enabled = false;
+        }
 	}
 }
