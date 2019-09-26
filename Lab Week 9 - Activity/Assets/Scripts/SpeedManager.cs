@@ -12,6 +12,20 @@ public class SpeedManager : MonoBehaviour
             return speedModifier;
         }
     }
+    enum GameSpeed { Slow=1, Fast=3 };
+    private static GameSpeed currentSpeedState = GameSpeed.Slow;
+    public static GameSpeed CurrentSpeedState
+    {
+        get
+        {
+            return currentSpeedState;
+        }
+        set
+        {
+            currentSpeedState = value;
+            speedModifier = (float)value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

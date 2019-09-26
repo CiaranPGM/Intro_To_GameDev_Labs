@@ -33,11 +33,7 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterPosition()
     {
-<<<<<<< HEAD
-        gameObject.transform.Translate(movement * walkSpeed * Time.deltaTime);
-=======
         gameObject.transform.Translate(movement * walkSpeed * Time.deltaTime, Space.World);
->>>>>>> 1cf827b6d268c64b8a0cb55325868878329e2f6a
     }
 
     void CharacterRotation()
