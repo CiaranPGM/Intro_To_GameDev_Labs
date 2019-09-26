@@ -7,6 +7,10 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 movement;
     private float movementSqrMagnitute;
     public float walkSpeed = 1.5f;
+    public Animator anim;
+    public AudioSource footstepSource, backgroundMusic;
+    public AudioClip[] footsetpClips;
+    private int counter = 0;
 
     // Update is called once per frame
     void Update()
@@ -22,27 +26,48 @@ public class CharacterMovement : MonoBehaviour
     {
         movement.x = Input.GetAxis("Horizontal");
         movement.z = Input.GetAxis("Vertical");
+        Vector3.ClampMagnitude(movement, 1.0f);
         movementSqrMagnitute = movement.sqrMagnitude;
-        Debug.Log(movement);
+        //Debug.Log(movement);
     }
 
     void CharacterPosition()
     {
+<<<<<<< HEAD
         gameObject.transform.Translate(movement * walkSpeed * Time.deltaTime);
+=======
+        gameObject.transform.Translate(movement * walkSpeed * Time.deltaTime, Space.World);
+>>>>>>> 1cf827b6d268c64b8a0cb55325868878329e2f6a
     }
 
     void CharacterRotation()
     {
-
+        Vector3 zero = new Vector3(0, 0, 0);
+        if(movement != zero)
+            gameObject.transform.rotation = Quaternion.LookRotation(movement);
     }
 
     void WalkingAnimation()
     {
-
+        anim.SetFloat("MoveSpeed", movementSqrMagnitute);
     }
 
     void FootstepAudio()
     {
-
+        if(movementSqrMagnitute > 0.3f && !footstepSource.isPlaying)
+        {
+            footstepSource.clip = footsetpClips[counter];
+            footstepSource.volume = movementSqrMagnitute;
+            footstepSource.Play();
+            backgroundMusic.volume = 0.5f;
+            if(counter == 0)
+            {
+                counter = 1;
+            }
+            else { counter = 0; }
+        }else if(movementSqrMagnitute <= 0.3f && footstepSource.isPlaying){
+            footstepSource.Stop();
+            backgroundMusic.volume = 1.0f;
+        }
     }
 }
