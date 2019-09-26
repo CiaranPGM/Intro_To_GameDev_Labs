@@ -28,7 +28,6 @@ public class CharacterMovement : MonoBehaviour
 
     void CharacterPosition()
     {
-        //gameObject.transform.position += movement * walkSpeed * Time.deltaTime;
         gameObject.transform.Translate(movement * walkSpeed * Time.deltaTime);
     }
 
