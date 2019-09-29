@@ -12,7 +12,7 @@ public class SpeedManager : MonoBehaviour
             return speedModifier;
         }
     }
-    enum GameSpeed { Slow=1, Fast=3 };
+    public enum GameSpeed { Slow=1, Fast=3 };
     private static GameSpeed currentSpeedState = GameSpeed.Slow;
     public static GameSpeed CurrentSpeedState
     {

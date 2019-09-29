@@ -20,7 +20,7 @@ public class CharacterMovement : MonoBehaviour {
         movement.x = Input.GetAxis("Horizontal");
         movement.z = Input.GetAxis("Vertical");
         movement = Vector3.ClampMagnitude(movement, 1.0f);
-        movementSqrMagnitude = movement.sqrMagnitude;
+        movementSqrMagnitude = SpeedManager.SpeedModifier;
     }
 
 
