@@ -20,6 +20,7 @@ public class CharacterMovement : MonoBehaviour
         CharacterRotation();
         WalkingAnimation();
         FootstepAudio();
+        RaycastCheck();
     }
 
     void GetMovementInput()
@@ -65,5 +66,34 @@ public class CharacterMovement : MonoBehaviour
             footstepSource.Stop();
             backgroundMusic.volume = 1.0f;
         }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Trigger Exit: " + other.name + other.transform.position);
+    }
+    
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("Collision Enter: " + other.gameObject.name + " : " + other.contacts[0].thisCollider.name);
+    }
+
+    void OnCollisionStay(Collision other)
+    {
+        if(other.gameObject.tag == "Impassable")
+        {
+            Debug.Log("Collision Stay: " + other.gameObject.name);
+        }
+    }
+
+    bool RaycastCheck()
+    {
+        if(Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), transform.forward, 5.0f))
+        {
+            Debug.DrawRay(transform.position + new Vector3(0, 0.5f, 0), transform.forward, new Color(255, 0, 0));
+            Debug.Log("Raycast Hit: ");
+            return true;
+        }
+        return false;
     }
 }

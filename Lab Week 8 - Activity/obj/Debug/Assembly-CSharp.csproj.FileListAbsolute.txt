@@ -1,0 +1,2 @@
+C:\Users\Ciaran\Desktop\GameDev\Intro_To_GameDev_Labs\Lab Week 8 - Activity\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Users\Ciaran\Desktop\GameDev\Intro_To_GameDev_Labs\Lab Week 8 - Activity\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
